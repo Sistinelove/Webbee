@@ -1,0 +1,72 @@
+import './src/style/style.css';
+import {geoMap} from "./src/leaflet/leaflet.js";
+
+
+const routes = {
+    '#activity': 'src/pages/activityPage.html',
+    '#map': 'src/pages/mapPage.html',
+    '#time': 'src/pages/timePage.html',
+};
+
+//Загрузка html файла по URL
+function loadContent(url) {
+    return fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('app').innerHTML = data;
+            if (url === routes['#map']) {
+                geoMap();
+            }
+        })
+        .catch(error => console.error('Произошла ошибка загрузки страницы', error));
+}
+//Обработка навигации по вкладкам
+function handleNavigation() {
+    const hash = window.location.hash || '#activity';
+    if (routes[hash]) {
+        loadContent(routes[hash]);
+    } else {
+        loadContent(routes['#activity']);
+    }
+}
+//Событие для инициализации навигации при загрузке определенной страницы
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            const path = event.target.getAttribute('href'); //Получение пути из атрибура
+            history.pushState({}, '', path); // Меняем URL Без перезагрузки страницы
+            handleNavigation();
+        });
+    });
+    // Обработка кнопок в браузере вперед/назад
+    window.addEventListener('popstate', handleNavigation);
+    handleNavigation();
+});
+
+if (!sessionStorage.getItem('userActivityStartTime')) {
+    let startTime = new Date().getTime();
+    console.log(startTime);
+    sessionStorage.setItem('userActivityStartTime', startTime.toString());
+}
+
+function updateTimer() {
+    let startTime = parseInt(sessionStorage.getItem('userActivityStartTime'));
+
+    let currentTime = new Date().getTime();
+
+    let elapsedTime = currentTime - startTime;
+
+    let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+    let minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+    let timerElement = document.getElementById("Timer");
+    if (timerElement) {
+        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+    }
+}
+
+setInterval(updateTimer, 1000);
+
+updateTimer();

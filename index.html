@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/src/style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/style/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Web-bee</title>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+</head>
+
+<body class="preload">
+<header>
+    <div class="max-w-screen-desktop h-16 m-auto flex items-center justify-between shadow-['0px_1px_1px_0px_rgba(0, 0, 0, 0.1)]">
+        <div class="flex flex-row items-center gap-2 ml-8 ">
+            <div class="w-6 h-6 flex items-center">
+                <a href="#activity" class="nav-link">
+                    <img src="/src/img/backArrow.svg" alt="back-arrow"/>
+                </a>
+            </div>
+            <h1 class="text-xl">User Pages - Profile</h1>
+        </div>
+        <div class="flex flex-row gap-8  mt-2 mb-2 mr-8">
+            <div class="flex flex-col w-[56px] h-[48px] items-center">
+                <div class="w-6 h-6">
+                    <img src="/src/img/icon-statistics.svg" alt="icon-statistics"/>
+                </div>
+                <p class="text-sm">Statistics</p>
+            </div>
+            <div class="flex flex-col w-[56px] h-[48px] items-center">
+                <div class="w-6 h-6">
+                    <img src="/src/img/icon-statistics.svg" alt="icon-statistics"/>
+                </div>
+                <p class="text-sm">Invoices</p>
+            </div>
+            <div class="flex flex-col w-[56px] h-[48px] items-center">
+                <div class="w-6 h-6">
+                    <img src="src/img/icon-statistics.svg" alt="icon-statistics"/>
+                </div>
+                <p class="text-sm">Schedule</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row bg-bg2 max-w-screen-desktop m-auto h-10 justify-between shadow-customShadow shadow-['0px_1px_1px_0px_rgba(0, 0, 0, 0.1)]">
+        <nav class="flex flex-row justify-between items-center w-full">
+            <ul class="flex flex-row gap-8 ml-8 h-10 items-center">
+                <li class="flex items-center gap-2 bg-bg text-sm">
+                    <img src="/src/img/Activity.svg" class="w-[15px] h-[15px]" alt="icon-activity"/>
+                    <a href="#activity" class="nav-link">Activity</a>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                    <img src="/src/img/icon-map.svg" class="w-[15px] h-[15px]" alt="icon-map"/>
+                    <a href="#map" class="nav-link">Map</a>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                    <img src="/src/img/icon-time.svg" class="w-[15px] h-[15px]" alt="icon-time"/>
+                    <a href="#time" class="nav-link">Time</a>
+                </li>
+            </ul>
+            <ul class="flex flex-row gap-8 mr-8 items-center">
+                <li class="flex items-center gap-2 text-sm">
+                    <img src="/src/img/notes.svg" class="w-[15px] h-[15px]" alt="icon-notes"/>
+                    Notes
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                    <img src="/src/img/friends.svg" class="w-[15px] h-[15px]" alt="icon-friends"/>
+                    Friends
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                    <img src="/src/img/photos.svg" class="w-[15px] h-[15px]" alt="icon-photos"/>
+                    Photos
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                    <img src="/src/img/settings.svg" class="w-[15px] h-[15px]" alt="icon-settings"/>
+                    <span>Settings</span>
+                </li>
+                <li>
+                    <img src="/src/img/arrowDown.svg" alt="arrow-down"/>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main id="app">
+</main>
+<script type="module" src="/main.js"></script>
+<script type="module" src="/src/leaflet/leaflet.js"></script>
+</body>
+</html>
