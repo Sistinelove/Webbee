@@ -1,5 +1,5 @@
 import './src/style/style.css';
-import { geoMap } from "./src/leaflet/leaflet.js";
+import {geoMap} from "./src/leaflet/leaflet.js";
 
 const basePath = '/Webbee'; // Базовый путь
 const routes = {
