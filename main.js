@@ -45,7 +45,7 @@ function updateActiveTab(path) {
     }
 }
 
-document.querySelectorAll('icon-nav').forEach(icon => {
+document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
         const path = event.currentTarget.getAttribute('href');
