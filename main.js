@@ -19,14 +19,16 @@ function loadContent(url) {
         })
         .catch(error => console.error('Произошла ошибка загрузки страницы', error));
 }
-//Обработка навигации по вкладкам
-function handleNavigation() {
-    const hash = window.location.hash || '/activity';
-    if (routes[hash]) {
-        loadContent(routes[hash]);
+// Обработчик навигации по вкладкам
+function handleNavigation(pathname) {
+    const path = pathname || window.location.pathname || '/activity';
+    const url = routes[path];
+    if (url) {
+        loadContent(url);
     } else {
         loadContent(routes['/activity']);
     }
+    updateActiveTab(path);
 }
 //Событие для инициализации навигации при загрузке определенной страницы
 document.addEventListener('DOMContentLoaded', function () {
