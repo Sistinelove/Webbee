@@ -1,5 +1,5 @@
 import './src/style/style.css';
-import {geoMap} from "./src/leaflet/leaflet.js";
+import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
     '/activity': '/Webbee/src/pages/activityPage.html',
@@ -7,7 +7,7 @@ const routes = {
     '/time': '/Webbee/src/pages/timePage.html',
 };
 
-//Загрузка html файла по URL
+// Функция для загрузки контента на основе URL
 function loadContent(url) {
     return fetch(url)
         .then(response => response.text())
@@ -20,9 +20,10 @@ function loadContent(url) {
                 startTimer();
             }
         })
-        .catch(error => console.error('Произошла ошибка загрузки страницы', error));
+        .catch(error => console.error('Ошибка загрузки страницы', error));
 }
-// Обработчик навигации по вкладкам
+
+// Обработчик навигации
 function handleNavigation(pathname) {
     const path = pathname || window.location.pathname || '/activity';
     const url = routes[path];
@@ -33,6 +34,7 @@ function handleNavigation(pathname) {
     }
     updateActiveTab(path);
 }
+
 function updateActiveTab(path) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.parentElement.classList.remove('bg-bg');
@@ -42,7 +44,8 @@ function updateActiveTab(path) {
         activeLink.parentElement.classList.add('bg-bg');
     }
 }
-//Событие для инициализации навигации при загрузке определенной страницы
+
+// Обработчик событий для навигации
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
