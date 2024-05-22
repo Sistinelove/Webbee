@@ -91,7 +91,7 @@ function startTimer() {
 
     setInterval(updateTimer, 1000);
 
-    const reloadButton = document.querySelector('.icon-refresh');
+    const reloadButton = document.getElementById('refreshTimer');
     if (reloadButton) {
         reloadButton.addEventListener('click', () => {
             startTime = new Date().getTime();
