@@ -35,20 +35,28 @@ function handleNavigation(hash) {
     updateActiveTab(path);
 }
 
+
 function updateActiveTab(hash) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.parentElement.classList.remove('bg-bg');
     });
+    document.querySelectorAll('.icon-nav').forEach(icon => {
+        icon.classList.remove('bg-bg');
+    });
     const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
     if (activeLink) {
         activeLink.parentElement.classList.add('bg-bg');
+    }
+    const activeIcon = document.querySelector(`.icon-nav[data-path="${hash}"]`);
+    if (activeIcon) {
+        activeIcon.classList.add('bg-bg');
     }
 }
 
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
-        const hash = event.currentTarget.getAttribute('href');
+        const hash = event.currentTarget.getAttribute('data-path');
         history.pushState({}, '', hash);
         handleNavigation(hash);
     });
