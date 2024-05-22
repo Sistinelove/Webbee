@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig({
     base: '/Webbee/',
@@ -6,11 +7,11 @@ export default defineConfig({
         outDir: 'dist',
         rollupOptions: {
             input: {
-                main: 'index.html',
-                activity: 'src/pages/activityPage.html',
-                map: 'src/pages/mapPage.html',
-                time: 'src/pages/timePage.html'
+                main: resolve(__dirname, 'index.html'),
+                activity: resolve(__dirname, 'activity.html'),
+                map: resolve(__dirname, 'map.html'),
+                time: resolve(__dirname, 'time.html')
             }
         }
-    }
+    },
 })
