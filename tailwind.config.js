@@ -1,6 +1,12 @@
 // tailwind.config.js
 module.exports = {
-    content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}', './activity/**/*.{html,js}', './map/**/*.{html,js}', './timer/**/*.{html,js}'],
+    content: [
+        "./index.html",
+        "./activity.html",
+        "./map.html",
+        "./time.html",
+        "./src/**/*.{html,js}"
+    ],
     theme: {
         extend: {
             screens: {
@@ -21,9 +27,9 @@ module.exports = {
                 "14": "0.875rem",
                 "7": "0.4375rem",
                 "4": "0.25rem",
-                "sm": ["0.875rem", { lineHeight: '1.41', fontWeight: '400' }],
-                "base": ["16px", { lineHeight: '18.75px', fontWeight: '400' }],
-                "lg": ["18px", { lineHeight: '21.09px', fontWeight: '500', fontFamily: 'Roboto' }],
+                "sm": ["0.875rem", {lineHeight: '1.41', fontWeight: '400'}],
+                "base": ["16px", {lineHeight: '18.75px', fontWeight: '400'}],
+                "lg": ["18px", {lineHeight: '21.09px', fontWeight: '500', fontFamily: 'Roboto'}],
             },
             fontStyle: {
                 italic: "italic",
