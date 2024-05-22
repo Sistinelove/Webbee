@@ -1,6 +1,6 @@
 // tailwind.config.js
 module.exports = {
-    content: ["./index.html", "./src/**/*.{html,js}"],
+    content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}', './activity/**/*.{html,js}', './map/**/*.{html,js}', './timer/**/*.{html,js}'],
     theme: {
         extend: {
             screens: {
