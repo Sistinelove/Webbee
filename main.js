@@ -95,6 +95,7 @@ function startTimer() {
     if (reloadButton) {
         reloadButton.addEventListener('click', () => {
             startTime = new Date().getTime();
+            updateTimer();
         });
     }
 }
