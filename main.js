@@ -2,9 +2,9 @@ import './src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
-    '/activity': '/Webbee/src/pages/activityPage.html',
-    '/map': '/Webbee/src/pages/mapPage.html',
-    '/time': '/Webbee/src/pages/timePage.html',
+    '#activity': '/Webbee/src/pages/activityPage.html',
+    '#map': '/Webbee/src/pages/mapPage.html',
+    '#time': '/Webbee/src/pages/timePage.html',
 };
 
 // Функция для загрузки контента на основе URL
@@ -13,10 +13,10 @@ function loadContent(url) {
         .then(response => response.text())
         .then(data => {
             document.getElementById('app').innerHTML = data;
-            if (url === routes['/map']) {
+            if (url === routes['#map']) {
                 geoMap();
             }
-            if (url === routes['/time']) {
+            if (url === routes['#time']) {
                 startTimer();
             }
         })
@@ -25,12 +25,12 @@ function loadContent(url) {
 
 // Обработчик навигации
 function handleNavigation(pathname) {
-    const path = pathname || window.location.pathname || '/activity';
+    const path = pathname || window.location.pathname || '#activity';
     const url = routes[path];
     if (url) {
         loadContent(url);
     } else {
-        loadContent(routes['/activity']);
+        loadContent(routes['#activity']);
     }
     updateActiveTab(path);
 }
