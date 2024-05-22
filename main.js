@@ -2,9 +2,9 @@ import './src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
-    '/activity': '/Webbee/activity.html',
-    '/map': '/Webbee/map.html',
-    '/time': '/Webbee/time.html',
+    '/Webbee/activity': '/Webbee/activity.html',
+    '/Webbee/map': '/Webbee/map.html',
+    '/Webbee/time': '/Webbee/time.html',
 };
 
 // Функция для загрузки контента на основе URL
