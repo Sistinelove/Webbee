@@ -1,5 +1,5 @@
 import './src/style/style.css';
-import { geoMap } from "./src/leaflet/leaflet.js";
+import {geoMap} from "./src/leaflet/leaflet.js";
 
 const routes = {
     '#activity': '/Webbee/src/pages/activityPage.html',
@@ -45,16 +45,15 @@ function updateActiveTab(path) {
     }
 }
 
-function iconActiveTab(){
-    document.querySelectorAll('icon-nav').forEach(icon=>{
-        icon.addEventListener('click',event =>{
-            event.preventDefault();
-            const path = event.currentTarget.getAttribute('href');
-            history.pushState({},'',path);
-            handleNavigation(path);
-        })
+document.querySelectorAll('icon-nav').forEach(icon => {
+    icon.addEventListener('click', event => {
+        event.preventDefault();
+        const path = event.currentTarget.getAttribute('href');
+        history.pushState({}, '', path);
+        handleNavigation(path);
     })
-}
+})
+
 
 // Обработчик событий для навигации
 document.addEventListener('DOMContentLoaded', function () {
