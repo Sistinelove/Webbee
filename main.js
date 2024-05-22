@@ -16,6 +16,9 @@ function loadContent(url) {
             if (url === routes['/map']) {
                 geoMap();
             }
+            if (url === routes['/time']) {
+                startTimer();
+            }
         })
         .catch(error => console.error('Произошла ошибка загрузки страницы', error));
 }
