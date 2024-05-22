@@ -1,5 +1,5 @@
 import './src/style/style.css';
-import {geoMap} from "./src/leaflet/leaflet.js";
+import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
     '#activity': '/Webbee/src/pages/activityPage.html',
@@ -24,8 +24,8 @@ function loadContent(url) {
 }
 
 // Обработчик навигации
-function handleNavigation(pathname) {
-    const path = pathname || window.location.pathname || '#activity';
+function handleNavigation(hash) {
+    const path = hash || window.location.hash || '#activity';
     const url = routes[path];
     if (url) {
         loadContent(url);
@@ -35,11 +35,11 @@ function handleNavigation(pathname) {
     updateActiveTab(path);
 }
 
-function updateActiveTab(path) {
+function updateActiveTab(hash) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.parentElement.classList.remove('bg-bg');
     });
-    const activeLink = document.querySelector(`.nav-link[href="${path}"]`);
+    const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
     if (activeLink) {
         activeLink.parentElement.classList.add('bg-bg');
     }
@@ -48,27 +48,26 @@ function updateActiveTab(path) {
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
-        const path = event.currentTarget.getAttribute('href');
-        history.pushState({}, '', path);
-        handleNavigation(path);
-    })
-})
-
+        const hash = event.currentTarget.getAttribute('href');
+        history.pushState({}, '', hash);
+        handleNavigation(hash);
+    });
+});
 
 // Обработчик событий для навигации
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault();
-            const path = event.currentTarget.getAttribute('href');
-            history.pushState({}, '', path); // Изменение URL без перезагрузки страницы
-            handleNavigation(path);
+            const hash = event.currentTarget.getAttribute('href');
+            history.pushState({}, '', hash); // Изменение URL без перезагрузки страницы
+            handleNavigation(hash);
         });
     });
 
     // Обработка кнопок вперед/назад
-    window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
-    handleNavigation(window.location.pathname);
+    window.addEventListener('popstate', () => handleNavigation(window.location.hash));
+    handleNavigation(window.location.hash); // Используем window.location.hash вместо pathname
 });
 
 // Функция для обновления таймера
