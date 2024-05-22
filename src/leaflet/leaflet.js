@@ -4,12 +4,12 @@ function geoMap() {
     const preloader = document.getElementById('preloaderMap');
 
     //функция настройки карты
-    function setupMap(lat, lng, accuracy) {
+    function setupMap() {
         if (map) {
             map.remove(); // В случае если карты уже была создана, удаляем ее
         }
 
-        map = L.map('Geo').setView([lat, lng], 13);
+        map = L.map('Geo').setView([56.839657, 60.616422], 10);
 
         //Добавлем слой самой карты
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -18,44 +18,19 @@ function geoMap() {
         }).addTo(map);
 
         // Создаем маркер и круг на карту
-        let marker = L.marker([lat, lng]).addTo(map);
-        let circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+        L.marker([56.84067, 60.650413]).addTo(map).bindPopup('ИРИТ-РТФ').openPopup();
+        L.circle([56.890342, 60.635052]).addTo(map).bindPopup('Школа №107').openPopup();
 
         // Отслеживание изменений геопозиции и обновляем маркер круга на карте
-        navigator.geolocation.watchPosition(
-            pos => {
-                const newLat = pos.coords.latitude;
-                const newLng = pos.coords.longitude;
-                const newAccuracy = pos.coords.accuracy;
-
-                marker.setLatLng([newLat, newLng]); //Устанавливаем маркер
-                circle.setLatLng([newLat, newLng]).setRadius(newAccuracy);//устанавливаем круг
-                map.setView([newLat, newLng]);//устанавливаем центр карты
-            },
-            err => {
-                console.error("Не удалось получить локацию", err);
-            }
-        );
         // Отображение карты и скрытие прелоадера
         preloader.style.display = 'none';
         mapElement.style.display = 'block';
     }
-    //Получение текущего местоположения пользователя и настройка карты
-    navigator.geolocation.getCurrentPosition(
-        pos => {
-            const lat = pos.coords.latitude;
-            const lng = pos.coords.longitude;
-            const accuracy = pos.coords.accuracy;
-            //Так как у меня не получалось реализовать прелооадер после загрузки карты, мной было решено сделать заглушку в виде 3 секунд перед отображением карты
-            setTimeout(() => {
-                setupMap(lat, lng, accuracy);
-            }, 3000);
-        },
-        err => {
-            console.error("Не получилось получить текущее местоположение", err);
-            alert("Не получилось получить текущее местоположение");
-        }
-    );
+
+    // Так как у меня не получалось реализовать прелоадер после загрузки карты, мной было решено сделать заглушку в виде 3 секунд перед отображением карты
+    setTimeout(() => {
+        setupMap();
+    }, 3000);
 }
 
-export { geoMap };
+export {geoMap};
