@@ -1,11 +1,10 @@
 import './src/style/style.css';
 import {geoMap} from "./src/leaflet/leaflet.js";
 
-
 const routes = {
-    '#activity': 'src/pages/activityPage.html',
-    '#map': 'src/pages/mapPage.html',
-    '#time': 'src/pages/timePage.html',
+    '/activity': '/Webbee/src/pages/activityPage.html',
+    '/map': '/Webbee/src/pages/mapPage.html',
+    '/time': '/Webbee/src/pages/timePage.html',
 };
 
 //Загрузка html файла по URL
@@ -14,7 +13,7 @@ function loadContent(url) {
         .then(response => response.text())
         .then(data => {
             document.getElementById('app').innerHTML = data;
-            if (url === routes['#map']) {
+            if (url === routes['/map']) {
                 geoMap();
             }
         })
@@ -22,11 +21,11 @@ function loadContent(url) {
 }
 //Обработка навигации по вкладкам
 function handleNavigation() {
-    const hash = window.location.hash || '#activity';
+    const hash = window.location.hash || '/activity';
     if (routes[hash]) {
         loadContent(routes[hash]);
     } else {
-        loadContent(routes['#activity']);
+        loadContent(routes['/activity']);
     }
 }
 //Событие для инициализации навигации при загрузке определенной страницы
