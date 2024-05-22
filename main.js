@@ -30,44 +30,55 @@ function handleNavigation(pathname) {
     }
     updateActiveTab(path);
 }
+function updateActiveTab(path) {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.parentElement.classList.remove('bg-bg');
+    });
+    const activeLink = document.querySelector(`.nav-link[href="${path}"]`);
+    if (activeLink) {
+        activeLink.parentElement.classList.add('bg-bg');
+    }
+}
 //Событие для инициализации навигации при загрузке определенной страницы
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault();
-            const path = event.target.getAttribute('href'); //Получение пути из атрибура
-            history.pushState({}, '', path); // Меняем URL Без перезагрузки страницы
-            handleNavigation();
+            const path = event.currentTarget.getAttribute('href');
+            history.pushState({}, '', path); // Изменение URL без перезагрузки страницы
+            handleNavigation(path);
         });
     });
-    // Обработка кнопок в браузере вперед/назад
-    window.addEventListener('popstate', handleNavigation);
-    handleNavigation();
+
+    // Обработка кнопок вперед/назад
+    window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
+    handleNavigation(window.location.pathname);
 });
 
-if (!sessionStorage.getItem('userActivityStartTime')) {
+// Функция для обновления таймера
+function startTimer() {
+    let timerEl = document.getElementById('Timer');
     let startTime = new Date().getTime();
-    console.log(startTime);
-    sessionStorage.setItem('userActivityStartTime', startTime.toString());
-}
 
-function updateTimer() {
-    let startTime = parseInt(sessionStorage.getItem('userActivityStartTime'));
+    function updateTimer() {
+        let currentTime = new Date().getTime();
+        let elapsedTime = currentTime - startTime;
 
-    let currentTime = new Date().getTime();
+        let hours = String(Math.floor(elapsedTime / (1000 * 60 * 60))).padStart(2, '0');
+        let minutes = String(Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        let seconds = String(Math.floor((elapsedTime % (1000 * 60)) / 1000)).padStart(2, '0');
 
-    let elapsedTime = currentTime - startTime;
+        if (timerEl) {
+            timerEl.innerHTML = `${hours}:${minutes}:${seconds}`;
+        }
+    }
 
-    let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-    let minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+    setInterval(updateTimer, 1000);
 
-    let timerElement = document.getElementById("Timer");
-    if (timerElement) {
-        timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+    const reloadButton = document.querySelector('.icon-refresh');
+    if (reloadButton) {
+        reloadButton.addEventListener('click', () => {
+            startTime = new Date().getTime();
+        });
     }
 }
-
-setInterval(updateTimer, 1000);
-
-updateTimer();
