@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', event => {
             event.preventDefault();
             const hash = event.currentTarget.getAttribute('href');
+            if(hash === window.location.hash){
+                return;
+            }
             history.pushState({}, '', hash); // Изменение URL без перезагрузки страницы
             handleNavigation(hash);
         });
