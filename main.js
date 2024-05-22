@@ -1,10 +1,11 @@
 import './src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
+const basePath = '/Webbee'; // Базовый путь
 const routes = {
-    '/activity': '/Webbee/activity.html',
-    '/map': '/Webbee/map.html',
-    '/time': '/Webbee/time.html',
+    '/activity': `${basePath}/activity.html`,
+    '/map': `${basePath}/map.html`,
+    '/time': `${basePath}/time.html`,
 };
 
 // Функция для загрузки контента на основе URL
@@ -24,53 +25,54 @@ function loadContent(url) {
 }
 
 // Обработчик навигации
-function handleNavigation(hash) {
-    const path = hash || window.location.hash || '/activity';
-    const url = routes[path];
-    if (url) {
-        loadContent(url);
-    } else {
-        loadContent(routes['/activity']);
-    }
+function handleNavigation(path) {
+    const url = routes[path.replace(basePath, '')] || routes['/activity'];
+    loadContent(url);
     updateActiveTab(path);
 }
 
-function updateActiveTab(hash) {
+function updateActiveTab(path) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.parentElement.classList.remove('bg-bg');
     });
-    const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+    document.querySelectorAll('.icon-nav').forEach(icon => {
+        icon.classList.remove('bg-bg');
+    });
+    const activeLink = document.querySelector(`.nav-link[href="${path}"]`);
     if (activeLink) {
         activeLink.parentElement.classList.add('bg-bg');
+    }
+    const activeIcon = document.querySelector(`.icon-nav[data-path="${path}"]`);
+    if (activeIcon) {
+        activeIcon.classList.add('bg-bg');
     }
 }
 
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
-        const hash = event.currentTarget.getAttribute('href');
-        history.pushState({}, '', hash);
-        handleNavigation(hash);
+        const path = event.currentTarget.getAttribute('href');
+        history.pushState({}, '', basePath + path);
+        handleNavigation(basePath + path);
     });
 });
 
-// Обработчик событий для навигации
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault();
-            const hash = event.currentTarget.getAttribute('href');
-            if(hash === window.location.hash){
+            const path = event.currentTarget.getAttribute('href');
+            if (path === window.location.pathname) {
                 return;
             }
-            history.pushState({}, '', hash); // Изменение URL без перезагрузки страницы
-            handleNavigation(hash);
+            history.pushState({}, '', basePath + path); // Изменение URL без перезагрузки страницы
+            handleNavigation(basePath + path);
         });
     });
 
     // Обработка кнопок вперед/назад
-    window.addEventListener('popstate', () => handleNavigation(window.location.hash));
-    handleNavigation(window.location.hash); // Используем window.location.hash вместо pathname
+    window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
+    handleNavigation(window.location.pathname); // Используем window.location.pathname вместо hash
 });
 
 // Функция для обновления таймера
