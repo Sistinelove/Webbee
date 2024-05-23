@@ -23,15 +23,14 @@ function loadContent(url) {
         .catch(error => console.error('Ошибка загрузки страницы', error));
 }
 
-function handleNavigation(hash) {
-    const path = hash ? hash.replace('#', '') : '/activity';
+function handleNavigation(path) {
     const url = routes[path];
     if (url) {
         loadContent(url);
     } else {
-        loadContent(routes['/activity']);
+        loadContent(routes['/']);
     }
-    updateActiveTab(hash);
+    updateActiveTab(path);
 }
 
 function updateActiveTab(path) {
@@ -50,12 +49,13 @@ function updateActiveTab(path) {
         activeIcon.classList.add('bg-bg');
     }
 }
+
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
-        const hash = event.currentTarget.getAttribute('data-path');
-        window.location.hash = hash;
-        handleNavigation(hash);
+        const path = event.currentTarget.getAttribute('data-path');
+        window.history.pushState({}, '', path);
+        handleNavigation(path);
     });
 });
 
@@ -63,17 +63,17 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault();
-            const hash = event.currentTarget.getAttribute('href');
-            if(hash === window.location.hash){
+            const path = event.currentTarget.getAttribute('href');
+            if (path === window.location.pathname) {
                 return;
             }
-            window.location.hash = hash;
-            handleNavigation(hash);
+            window.history.pushState({}, '', path);
+            handleNavigation(path);
         });
     });
 
-    window.addEventListener('popstate', () => handleNavigation(window.location.hash));
-    handleNavigation(window.location.hash);
+    window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
+    handleNavigation(window.location.pathname);
 });
 
 function startTimer() {
