@@ -4,7 +4,7 @@ import { geoMap } from "./src/leaflet/leaflet.js";
 const routes = {
     '/activity': 'activity.html',
     '/map': 'map.html',
-    '/time': 'timer.html',
+    '/time': 'time.html',
 };
 
 function loadContent(url) {

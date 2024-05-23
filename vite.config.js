@@ -10,7 +10,7 @@ export default defineConfig({
                 main: resolve(__dirname, 'index.html'),
                 activity: resolve(__dirname, 'activity.html'),
                 map: resolve(__dirname, 'map.html'),
-                time: resolve(__dirname, 'timer.html')
+                time: resolve(__dirname, 'time.html')
             }
         }
     },
