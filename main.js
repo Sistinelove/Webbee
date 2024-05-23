@@ -1,4 +1,4 @@
-import './src/style/style.css';
+import '/src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
@@ -25,14 +25,14 @@ function loadContent(url) {
 
 // Обработчик навигации
 function handleNavigation(hash) {
-    const path = hash || window.location.hash || '/activity';
+    const path = hash ? hash.replace('#', '') : '/activity';
     const url = routes[path];
     if (url) {
         loadContent(url);
     } else {
         loadContent(routes['/activity']);
     }
-    updateActiveTab(path);
+    updateActiveTab(hash);
 }
 
 
@@ -43,11 +43,11 @@ function updateActiveTab(hash) {
     document.querySelectorAll('.icon-nav').forEach(icon => {
         icon.classList.remove('bg-bg');
     });
-    const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+    const activeLink = document.querySelector(`.nav-link[href="#${hash}"]`);
     if (activeLink) {
         activeLink.parentElement.classList.add('bg-bg');
     }
-    const activeIcon = document.querySelector(`.icon-nav[data-path="${hash}"]`);
+    const activeIcon = document.querySelector(`.icon-nav[data-path="#${hash}"]`);
     if (activeIcon) {
         activeIcon.classList.add('bg-bg');
     }
@@ -57,7 +57,7 @@ document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
         const hash = event.currentTarget.getAttribute('data-path');
-        history.pushState({}, '', hash);
+        window.location.hash = hash;
         handleNavigation(hash);
     });
 });
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if(hash === window.location.hash){
                 return;
             }
-            history.pushState({}, '', hash); // Изменение URL без перезагрузки страницы
+            window.location.hash = hash;// Изменение URL без перезагрузки страницы
             handleNavigation(hash);
         });
     });
