@@ -2,9 +2,10 @@ import './src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
-    '/activity': 'activity.html',
+    '/': 'index.html',
     '/map': 'map.html',
-    '/time': 'time.html',
+    '/activity': 'activity.html',
+    '/time': 'time.html'
 };
 
 function loadContent(url) {
