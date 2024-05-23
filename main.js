@@ -12,7 +12,11 @@ function loadContent(url) {
     return fetch(url)
         .then(response => response.text())
         .then(data => {
-            document.getElementById('app').innerHTML = data;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            const mainContent = doc.querySelector('main').innerHTML;
+            document.querySelector('main').innerHTML = mainContent;
+
             if (url === routes['/Webbee/map']) {
                 geoMap();
             }
@@ -73,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
-    handleNavigation(window.location.pathname);
 });
 
 function startTimer() {

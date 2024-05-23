@@ -8,101 +8,20 @@
     <title>Map</title>
 </head>
 <body>
-<header>
-    <div class="max-w-screen-desktop h-16 m-auto flex items-center justify-between shadow-customShadow">
-        <div class="flex flex-row items-center gap-2 ml-8 ">
-            <div class="w-6 h-6 flex items-center">
-                <a href="/activity" class="back-arrow">
-                    <img src="/src/img/backArrow.svg" alt="back-arrow"/>
-                </a>
-            </div>
-            <h1 class="text-xl">User Pages - Profile</h1>
-        </div>
-        <div class="flex flex-row gap-8  mt-2 mb-2 mr-8">
-            <div class="flex flex-col w-[56px] h-[48px] items-center">
-                <div class="w-6 h-6">
-                    <img src="/src/img/icon-statistics.svg" alt="icon-statistics"/>
-                </div>
-                <p class="text-sm">Statistics</p>
-            </div>
-            <div class="flex flex-col w-[56px] h-[48px] items-center">
-                <div class="w-6 h-6">
-                    <img src="/src/img/icon-statistics.svg" alt="icon-statistics"/>
-                </div>
-                <p class="text-sm">Invoices</p>
-            </div>
-            <div class="flex flex-col w-[56px] h-[48px] items-center">
-                <div class="w-6 h-6">
-                    <img src="src/img/icon-statistics.svg" alt="icon-statistics"/>
-                </div>
-                <p class="text-sm">Schedule</p>
-            </div>
-        </div>
-    </div>
-    <div class="flex flex-row bg-bg2 max-w-screen-desktop m-auto h-10 justify-between shadow-customShadow shadow-['0px_1px_1px_0px_rgba(0, 0, 0, 0.1)]">
-        <nav class="flex flex-row justify-between items-center w-full">
-            <ul class="flex flex-row gap-8 ml-8 h-10 items-center">
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/Activity.svg" class="w-[15px] h-[15px] icon-nav" alt="icon-activity"
-                         data-path="/Webbee/activity"/>
-                    <a href="/Webbee/activity" class="nav-link" id="activity-tab">Activity</a>
-                </li>
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/icon-map.svg" class="w-[15px] h-[15px] icon-nav" alt="icon-map"
-                         data-path="/Webbee/map"/>
-                    <a href="/Webbee/map" class="nav-link" id="map-tab">Map</a>
-                </li>
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/icon-time.svg" class="w-[15px] h-[15px] icon-nav" alt="icon-time"
-                         data-path="/Webbee/time"/>
-                    <a href="/Webbee/time" class="nav-link" id="time-tab">Time</a>
-                </li>
-            </ul>
-            <ul class="flex flex-row gap-8 mr-8 items-center">
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/notes.svg" class="w-[15px] h-[15px]" alt="icon-notes"/>
-                    Notes
-                </li>
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/friends.svg" class="w-[15px] h-[15px]" alt="icon-friends"/>
-                    Friends
-                </li>
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/photos.svg" class="w-[15px] h-[15px]" alt="icon-photos"/>
-                    Photos
-                </li>
-                <li class="flex items-center gap-2 text-sm">
-                    <img src="/src/img/settings.svg" class="w-[15px] h-[15px]" alt="icon-settings"/>
-                    <span>Settings</span>
-                </li>
-                <li>
-                    <img src="/src/img/arrowDown.svg" alt="arrow-down"/>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
 <main id="app" class="bg-bg max-w-screen-desktop m-auto h-[696px] mb-8">
     <div class="flex flex-col max-w-screen-main-container-time m-auto">
-        <div class="flex flex-col bg-white mt-8 h-[568px]">
-            <div class="flex flex-row justify-between items-center bg-white">
-                <div class="text-base mb-[19px] mt-[18px] ml-8">Basic map</div>
-                <div class="flex flex-row gap-2 mr-8 mt-4 mb-4 items-center">
-                    <img src="src/img/arrowDown.svg" alt="arrow-down" class="w-[13.55px] h-[8.22px]"/>
-                    <img src="src/img/icon-refresh.svg" alt="icon-refresh" class="w-[15px] h-[16.76px]"/>
-                    <img src="src/img/icon-stop.svg" alt="icon-stop" class="w-[13.4px] h-[13.3px]"/>
-                </div>
+        <div class="flex flex-row justify-between items-center bg-white mt-8">
+            <div class="text-base mb-[19px] mt-[18px] ml-8">Basic map</div>
+            <div class="flex flex-row gap-2 mr-8 mt-4 mb-4 items-center">
+                <img src="src/img/arrowDown.svg" alt="arrow-down" class="w-[13.55px] h-[8.22px]"/>
+                <img src="src/img/icon-refresh.svg" alt="icon-refresh" class="w-[15px] h-[16.76px]"/>
+                <img src="src/img/icon-stop.svg" alt="icon-stop" class="w-[13.4px] h-[13.3px]"/>
             </div>
-            <div class="ml-8 mr-8 mb-9 m-auto bg-white">
-                <div id="preloaderMap" class="flex justify-center items-center h-[480px]">
-                    <img src="src/img/refresh.svg" alt="Refresh-icon" class="w-16 h-16"/>
-                </div>
-                <div id="Geo" style="width: 1312px; height: 480px"></div>
-            </div>
+        </div>
+        <div class="h-auto bg-white max-w-screen-main-container-time">
+            <div id="Geo" style="width: 1312px; height: 480px"></div>
         </div>
     </div>
 </main>
-<script type="module" src="main.js"></script>
-<script type="module" src="/src/leaflet/leaflet.js"></script>
 </body>
 </html>
