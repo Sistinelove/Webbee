@@ -4,10 +4,9 @@ import { geoMap } from "./src/leaflet/leaflet.js";
 const routes = {
     '/activity': 'activity.html',
     '/map': 'map.html',
-    '/time': 'time.html;',
+    '/time': 'timer.html',
 };
 
-// Функция для загрузки контента на основе URL
 function loadContent(url) {
     return fetch(url)
         .then(response => response.text())
@@ -23,7 +22,6 @@ function loadContent(url) {
         .catch(error => console.error('Ошибка загрузки страницы', error));
 }
 
-// Обработчик навигации
 function handleNavigation(hash) {
     const path = hash ? hash.replace('#', '') : '/activity';
     const url = routes[path];
@@ -34,7 +32,6 @@ function handleNavigation(hash) {
     }
     updateActiveTab(hash);
 }
-
 
 function updateActiveTab(hash) {
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -62,7 +59,6 @@ document.querySelectorAll('.icon-nav').forEach(icon => {
     });
 });
 
-// Обработчик событий для навигации
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
@@ -71,17 +67,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if(hash === window.location.hash){
                 return;
             }
-            window.location.hash = hash;// Изменение URL без перезагрузки страницы
+            window.location.hash = hash;
             handleNavigation(hash);
         });
     });
 
-    // Обработка кнопок вперед/назад
     window.addEventListener('popstate', () => handleNavigation(window.location.hash));
-    handleNavigation(window.location.hash); // Используем window.location.hash вместо pathname
+    handleNavigation(window.location.hash);
 });
 
-// Функция для обновления таймера
 function startTimer() {
     let timerEl = document.getElementById('Timer');
     let startTime = new Date().getTime();
