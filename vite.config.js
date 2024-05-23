@@ -7,10 +7,10 @@ export default defineConfig({
         outDir: 'dist',
         rollupOptions: {
             input: {
-                main: resolve(__dirname, '/index.html'),
-                activity: resolve(__dirname, '/activity.html'),
-                map: resolve(__dirname, '/map.html'),
-                time: resolve(__dirname, '/time.html')
+                main: resolve(__dirname, 'index.html'),
+                activity: resolve(__dirname, 'activity.html'),
+                map: resolve(__dirname, 'map.html'),
+                time: resolve(__dirname, 'time.html')
             }
         }
     },
