@@ -3,9 +3,9 @@ import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
     '/': 'index.html',
-    '/map': 'map.html',
-    '/activity': 'activity.html',
-    '/time': 'time.html'
+    '/map': '/Webbee/map.html',
+    '/activity': '/Webbee/activity.html',
+    '/time': '/Webbee/time.html'
 };
 
 function loadContent(url) {
