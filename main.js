@@ -35,20 +35,20 @@ function handleNavigation(hash) {
 
 function updateActiveTab(hash) {
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('bg-black');
+        link.parentElement.classList.remove('bg-secondGrey');
     });
     document.querySelectorAll('.icon-nav').forEach(icon => {
-        icon.classList.remove('bg-black');
+        icon.classList.remove('bg-secondGrey');
     });
     const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
     if (activeLink) {
-        activeLink.classList.add('bg-black');
+        activeLink.parentElement.add('bg-secondGrey');
     }
     const activeIcon = document.querySelector(`.icon-nav[data-path="${hash}"]`);
     if (activeIcon) {
-        activeIcon.classList.add('bg-black');
+        activeIcon.classList.add('bg-secondGrey');
     }
-}
+
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
