@@ -35,18 +35,18 @@ function handleNavigation(hash) {
 
 function updateActiveTab(hash) {
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.parentElement.classList.remove('bg-second-tx ');
+        link.classList.remove('nav-link-active');
     });
     document.querySelectorAll('.icon-nav').forEach(icon => {
-        icon.classList.remove('bg-second-tx ');
+        icon.classList.remove('icon-nav-active');
     });
-    const activeLink = document.querySelector(`.nav-link[href="#${hash}"]`);
+    const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
     if (activeLink) {
-        activeLink.parentElement.classList.add('bg-second-tx ');
+        activeLink.classList.add('nav-link-active');
     }
-    const activeIcon = document.querySelector(`.icon-nav[data-path="#${hash}"]`);
+    const activeIcon = document.querySelector(`.icon-nav[data-path="${hash}"]`);
     if (activeIcon) {
-        activeIcon.classList.add('bg-second-tx ');
+        activeIcon.classList.add('icon-nav-active');
     }
 }
 
