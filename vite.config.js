@@ -8,9 +8,9 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
-                activity: resolve(__dirname, 'src/activity/index.html'),
-                map: resolve(__dirname, 'src/map/index.html'),
-                time: resolve(__dirname, 'src/time/index.html')
+                activity: resolve(__dirname, 'activity.html'),
+                map: resolve(__dirname, 'map.html'),
+                time: resolve(__dirname, 'time.html')
             }
         }
     },

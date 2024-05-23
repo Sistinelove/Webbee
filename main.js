@@ -1,10 +1,10 @@
-import '/src/style/style.css';
+import './src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
-    '/activity': '/src/activity/index.html',
-    '/map': '/src/map/index.html',
-    '/time': '/src/time/index.html',
+    '/activity': 'activity.html',
+    '/map': 'map.html',
+    '/time': 'time.html;',
 };
 
 // Функция для загрузки контента на основе URL
