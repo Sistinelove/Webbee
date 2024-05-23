@@ -1,11 +1,8 @@
 // tailwind.config.js
 module.exports = {
     content: [
-        "./index.html",
-        "./activity.html",
-        "./map.html",
-        "./time.html",
-        "./src/**/*.{html,js}"
+        "./**/*.{html,js}",
+        "*.{html,js}",
     ],
     theme: {
         extend: {
