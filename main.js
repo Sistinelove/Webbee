@@ -49,7 +49,6 @@ function updateActiveTab(hash) {
         activeIcon.classList.add('bg-black');
     }
 }
-
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
