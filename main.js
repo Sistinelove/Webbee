@@ -12,7 +12,7 @@ function loadContent(url) {
     return fetch(url)
         .then(response => response.text())
         .then(data => {
-            document.getElementById('app').outerHTML = data;
+            document.getElementById('app').innerHTML = data;
             if (url === routes['/map']) {
                 geoMap();
             }
