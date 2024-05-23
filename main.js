@@ -2,10 +2,10 @@ import './src/style/style.css';
 import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
-    '/': 'index.html',
-    '/map': '/Webbee/map.html',
-    '/activity': '/Webbee/activity.html',
-    '/time': '/Webbee/time.html'
+    '/Webbee/': 'index.html',
+    '/Webbee/map': '/Webbee/map.html',
+    '/Webbee/activity': '/Webbee/activity.html',
+    '/Webbee/time': '/Webbee/time.html'
 };
 
 function loadContent(url) {
@@ -13,14 +13,14 @@ function loadContent(url) {
         .then(response => response.text())
         .then(data => {
             document.getElementById('app').innerHTML = data;
-            if (url === routes['/map']) {
+            if (url === routes['/Webbee/map']) {
                 geoMap();
             }
-            if (url === routes['/time']) {
+            if (url === routes['/Webbee/time']) {
                 startTimer();
             }
         })
-        .catch(error => console.error('Ошибка загрузки страницы', error));
+        .catch(error => console.error('Error loading page', error));
 }
 
 function handleNavigation(path) {
@@ -28,7 +28,7 @@ function handleNavigation(path) {
     if (url) {
         loadContent(url);
     } else {
-        loadContent(routes['/']);
+        loadContent(routes['/Webbee/']);
     }
     updateActiveTab(path);
 }
