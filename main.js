@@ -48,7 +48,7 @@ function updateActiveTab(hash) {
     if (activeIcon) {
         activeIcon.classList.add('bg-secondGrey');
     }
-
+}
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
