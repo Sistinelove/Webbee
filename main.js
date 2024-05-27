@@ -3,9 +3,9 @@ import { geoMap } from "./src/leaflet/leaflet.js";
 
 const routes = {
     '/Webbee/': 'index.html',
-    '/Webbee/map': '/Webbee/map.html',
-    '/Webbee/activity': '/Webbee/activity.html',
-    '/Webbee/time': '/Webbee/time.html'
+    '/Webbee/map': 'map.html',
+    '/Webbee/activity': 'activity.html',
+    '/Webbee/time': 'time.html'
 };
 
 function loadContent(url) {
@@ -17,10 +17,10 @@ function loadContent(url) {
             const mainContent = doc.querySelector('main').innerHTML;
             document.querySelector('main').innerHTML = mainContent;
 
-            if (url === routes['/Webbee/map']) {
+            if (url.endsWith('map.html')) {
                 geoMap();
             }
-            if (url === routes['/Webbee/time']) {
+            if (url.endsWith('time.html')) {
                 startTimer();
             }
         })
