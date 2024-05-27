@@ -1,5 +1,5 @@
 import './src/style/style.css';
-import { geoMap } from './src/leaflet/leaflet.js';
+import {geoMap} from './src/leaflet/leaflet.js';
 
 const routes = {
     '/Webbee/': '/Webbee/index.html',
@@ -10,20 +10,20 @@ const routes = {
 
 function loadContent(url) {
     return fetch(url)
-        .then(response => response.text())
+        .then(response => response.text()) // Преобразуем ответ в текст
         .then(data => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, 'text/html');
             const mainContent = doc.querySelector('main').innerHTML;
             document.querySelector('main').innerHTML = mainContent;
 
-            // Убедитесь, что стили применяются
+            // копируем и применяем стили из загруженной страницы
             const styles = doc.querySelectorAll('link[rel="stylesheet"], style');
             styles.forEach(style => {
                 document.head.appendChild(style.cloneNode(true));
             });
 
-            // Убедитесь, что скрипты инициализируются
+            // Инициализируем скрипты из загруженной страниц
             const scripts = doc.querySelectorAll('script');
             scripts.forEach(script => {
                 const newScript = document.createElement('script');
@@ -52,6 +52,7 @@ function handleNavigation(path) {
     updateActiveTab(path);
 }
 
+// Обновление bg активной вкладки навигации
 function updateActiveTab(path) {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.parentElement.classList.remove('bg-bg');
@@ -78,6 +79,7 @@ document.querySelectorAll('.icon-nav').forEach(icon => {
     });
 });
 
+// Обработчик события для загрузки DOM контента
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
@@ -86,13 +88,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (path === window.location.pathname) {
                 return;
             }
-            window.history.pushState({}, '', path);
+            window.history.pushState({}, '', path); // Обновление URl без перезагрузки
             handleNavigation(path);
         });
     });
 
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
 });
+
 function startTimer() {
     let timerEl = document.getElementById('Timer');
     let startTime = new Date().getTime();
