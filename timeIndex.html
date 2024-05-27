@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/src/style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/style/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Map</title>
+</head>
+<body>
+<main id="app" class="bg-bg max-w-screen-desktop m-auto mb-8 h-[696px]">
+    <div class="flex flex-col max-w-screen-main-container-time m-auto">
+        <div class="flex flex-row justify-between items-center bg-white mt-8">
+            <div class="text-base mb-[19px] mt-[18px] ml-8">Timer</div>
+            <div class="flex flex-row gap-2 mr-8 mt-4 mb-4 items-center">
+                <img src="/src/img/arrowDown.svg" alt="arrow-down" class="w-[13.55px] h-[8.22px]"/>
+                <img id="refreshTimer" src="/src/img/icon-refresh.svg" alt="icon-refresh" class="w-[15px] h-[16.76px] cursor-pointer hover:opacity-80 icon-refresh"/>
+                <img src="/src/img/icon-stop.svg" alt="icon-stop" class="w-[13.4px] h-[13.3px]"/>
+            </div>
+        </div>
+        <div class="h-auto bg-white max-w-screen-main-container-time">
+            <div id="Timer" class="text-base ml-8 mt-4 mb-8">00:00:00</div>
+        </div>
+    </div>
+</main>
+<script type="module" src="main.js"></script>
+<script type="module" src="/src/leaflet/leaflet.js"></script>
+</body>
+</html>
