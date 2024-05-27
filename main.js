@@ -1,8 +1,8 @@
 import './src/style/style.css';
-import { geoMap } from "./src/leaflet/leaflet.js";
+import { geoMap } from './src/leaflet/leaflet.js';
 
 const routes = {
-    '/Webbee/': 'index.html',
+    '/Webbee/': '/Webbee/index.html',
     '/Webbee/map': '/Webbee/map.html',
     '/Webbee/activity': '/Webbee/activity.html',
     '/Webbee/time': '/Webbee/time.html'
@@ -16,6 +16,21 @@ function loadContent(url) {
             const doc = parser.parseFromString(data, 'text/html');
             const mainContent = doc.querySelector('main').innerHTML;
             document.querySelector('main').innerHTML = mainContent;
+
+            // Убедитесь, что стили применяются
+            const styles = doc.querySelectorAll('link[rel="stylesheet"], style');
+            styles.forEach(style => {
+                document.head.appendChild(style.cloneNode(true));
+            });
+
+            // Убедитесь, что скрипты инициализируются
+            const scripts = doc.querySelectorAll('script');
+            scripts.forEach(script => {
+                const newScript = document.createElement('script');
+                newScript.src = script.src;
+                newScript.type = 'module';
+                document.body.appendChild(newScript);
+            });
 
             if (url.endsWith('map.html')) {
                 geoMap();
@@ -78,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
 });
-
 function startTimer() {
     let timerEl = document.getElementById('Timer');
     let startTime = new Date().getTime();
