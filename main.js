@@ -17,21 +17,6 @@ function loadContent(url) {
             const mainContent = doc.querySelector('main').innerHTML;
             document.querySelector('main').innerHTML = mainContent;
 
-            // копируем и применяем стили из загруженной страницы
-            const styles = doc.querySelectorAll('link[rel="stylesheet"], style');
-            styles.forEach(style => {
-                document.head.appendChild(style.cloneNode(true));
-            });
-
-            // Инициализируем скрипты из загруженной страниц
-            const scripts = doc.querySelectorAll('script');
-            scripts.forEach(script => {
-                const newScript = document.createElement('script');
-                newScript.src = script.src;
-                newScript.type = 'module';
-                document.body.appendChild(newScript);
-            });
-
             if (url.endsWith('map.html')) {
                 geoMap();
             }
@@ -94,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
+    handleNavigation(window.location.pathname);
 });
 
 function startTimer() {
