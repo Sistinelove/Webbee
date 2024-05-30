@@ -1,6 +1,9 @@
 import './src/style/style.css';
 import {geoMap} from './src/leaflet/leaflet.js';
 
+let startTime;
+let timerInterval;
+
 const routes = {
     '/Webbee/': '/Webbee/index.html',
     '/Webbee/map': '/Webbee/map.html',
@@ -78,9 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 handleNavigation(window.location.pathname);
 
+// Функция таймера
 function startTimer() {
-    let timerEl = document.getElementById('Timer');
-    let startTime = new Date().getTime();
+    startTime = new Date().getTime();
 
     function updateTimer() {
         let currentTime = new Date().getTime();
@@ -90,18 +93,25 @@ function startTimer() {
         let minutes = String(Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         let seconds = String(Math.floor((elapsedTime % (1000 * 60)) / 1000)).padStart(2, '0');
 
-        if (timerEl) {
+        document.querySelectorAll('#Timer').forEach(timerEl => {
             timerEl.innerHTML = `${hours}:${minutes}:${seconds}`;
-        }
-    }
-
-    setInterval(updateTimer, 1000);
-
-    const reloadButton = document.getElementById('refreshTimer');
-    if (reloadButton) {
-        reloadButton.addEventListener('click', () => {
-            startTime = new Date().getTime();
-            updateTimer();
         });
     }
+
+    clearInterval(timerInterval);
+    timerInterval = setInterval(updateTimer, 1000);
 }
+
+// Инициализация таймера при загрузке страницы
+startTimer();
+
+//Сброс таймера
+const reloadButton = document.getElementById('refreshTimer');
+if (reloadButton) {
+    reloadButton.addEventListener('click', () => {
+        startTime = new Date().getTime();
+        updateTimer();
+    });
+}
+
+
