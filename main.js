@@ -25,6 +25,7 @@ function loadContent(url) {
             }
             if (url.endsWith('time.html')) {
                 startTimer();
+                setupRefreshButton()
             }
         })
         .catch(error => console.error('Error loading page', error));
@@ -51,7 +52,6 @@ function updateActiveTab(path) {
     }
 }
 
-
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
         event.preventDefault();
@@ -77,15 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
     handleNavigation(window.location.pathname);
+
 });
 
-handleNavigation(window.location.pathname);
-
-// Функция таймера
-function startTimer() {
-    startTime = new Date().getTime();
+function startTimer(reset = false) {
+    if (reset) {
+        startTime = new Date().getTime();
+        localStorage.getItem('startTime');
+    } else {
+        startTime = localStorage.getItem('startTime') || new Date().getTime();
+        localStorage.setItem('startTime', startTime);
+    }
 
     function updateTimer() {
+        const timerEl = document.getElementById('Timer');
+        if (!timerEl) return;
+
         let currentTime = new Date().getTime();
         let elapsedTime = currentTime - startTime;
 
@@ -93,25 +100,22 @@ function startTimer() {
         let minutes = String(Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         let seconds = String(Math.floor((elapsedTime % (1000 * 60)) / 1000)).padStart(2, '0');
 
-        document.querySelectorAll('#Timer').forEach(timerEl => {
-            timerEl.innerHTML = `${hours}:${minutes}:${seconds}`;
-        });
+        timerEl.innerHTML = `${hours}:${minutes}:${seconds}`;
     }
 
     clearInterval(timerInterval);
     timerInterval = setInterval(updateTimer, 1000);
 }
 
-// Инициализация таймера при загрузке страницы
-startTimer();
-
-//Сброс таймера
-const reloadButton = document.getElementById('refreshTimer');
-if (reloadButton) {
-    reloadButton.addEventListener('click', () => {
-        startTime = new Date().getTime();
-        updateTimer();
-    });
+function setupRefreshButton() {
+    const reloadButton = document.getElementById('refreshTimer');
+    if (reloadButton) {
+        reloadButton.addEventListener('click', () => {
+            localStorage.removeItem('startTime');
+            startTimer(true);
+        });
+    }
 }
-
-
+window.addEventListener('load', () => {
+    startTimer();
+});
