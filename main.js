@@ -39,21 +39,15 @@ function handleNavigation(path) {
 
 // Обновление bg активной вкладки навигации
 function updateActiveTab(path) {
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.parentElement.classList.remove('bg-bg');
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('bg-bg');
     });
-    document.querySelectorAll('.icon-nav').forEach(icon => {
-        icon.classList.remove('bg-bg');
-    });
-    const activeLink = document.querySelector(`.nav-link[href="${path}"]`);
-    if (activeLink) {
-        activeLink.parentElement.classList.add('bg-bg');
-    }
-    const activeIcon = document.querySelector(`.icon-nav[data-path="${path}"]`);
-    if (activeIcon) {
-        activeIcon.classList.add('bg-bg');
+    const activeItem = document.querySelector(`.nav-link[href="${path}"]`).parentElement;
+    if (activeItem) {
+        activeItem.classList.add('bg-bg');
     }
 }
+
 
 document.querySelectorAll('.icon-nav').forEach(icon => {
     icon.addEventListener('click', event => {
@@ -81,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
     handleNavigation(window.location.pathname);
 });
+
+handleNavigation(window.location.pathname);
 
 function startTimer() {
     let timerEl = document.getElementById('Timer');
