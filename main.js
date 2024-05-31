@@ -118,5 +118,5 @@ function setupRefreshButton() {
     }
 }
 window.addEventListener('load', () => {
-    startTimer();
+    startTimer(true);
 });
