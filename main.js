@@ -104,6 +104,7 @@ function startTimer(reset = false) {
     }
 
     clearInterval(timerInterval);
+    updateTimer();
     timerInterval = setInterval(updateTimer, 1000);
 }
 
