@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/src/style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/src/style/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Web-bee</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+</head>
+<body class="preload">
+<header>
+    <div class="max-w-screen-desktop h-16 m-auto flex items-center justify-between shadow-customShadow">
+        <div class="flex flex-row items-center gap-2 ml-8 ">
+            <div class="w-6 h-6 flex items-center">
+                <a href="/activity" class="back-arrow">
+                    <img src="/src/img/backArrow.svg" alt="back-arrow"/>
+                </a>
+            </div>
+            <h1 class="text-xl">User Pages - Profile</h1>
+        </div>
+        <div class="flex flex-row gap-8  mt-2 mb-2 mr-8">
+            <div class="flex flex-col w-[56px] h-[48px] items-center">
+                <div class="w-6 h-6">
+                    <img src="/src/img/icon-statistics.svg" alt="icon-statistics"/>
+                </div>
+                <p class="text-sm">Statistics</p>
+            </div>
+            <div class="flex flex-col w-[56px] h-[48px] items-center">
+                <div class="w-6 h-6">
+                    <img src="/src/img/icon-statistics.svg" alt="icon-statistics"/>
+                </div>
+                <p class="text-sm">Invoices</p>
+            </div>
+            <div class="flex flex-col w-[56px] h-[48px] items-center">
+                <div class="w-6 h-6">
+                    <img src="src/img/icon-statistics.svg" alt="icon-statistics"/>
+                </div>
+                <p class="text-sm">Schedule</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row bg-bg2 max-w-screen-desktop m-auto h-10 justify-between shadow-customShadow">
+        <nav class="flex flex-row justify-between items-center w-full">
+            <ul class="flex flex-row gap-8 ml-8 h-10 items-center">
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <a href="/Webbee/activity" class="nav-link flex items-center gap-2" id="activity-tab">
+                        <img src="/src/img/Activity.svg" class="w-[15px] h-[15px] icon-nav" alt="icon-activity"/>
+                        Activity
+                    </a>
+                </li>
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <a href="/Webbee/map" class="nav-link flex items-center gap-2" id="map-tab">
+                        <img src="/src/img/icon-map.svg" class="w-[15px] h-[15px] icon-nav" alt="icon-map"/>
+                        Map
+                    </a>
+                </li>
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <a href="/Webbee/time" class="nav-link flex items-center gap-2" id="time-tab">
+                        <img src="/src/img/icon-time.svg" class="w-[15px] h-[15px] icon-nav" alt="icon-time"/>
+                        Time
+                    </a>
+                </li>
+            </ul>
+            <ul class="flex flex-row gap-8 mr-8 items-center">
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <img src="/src/img/notes.svg" class="w-[15px] h-[15px]" alt="icon-notes"/>
+                    Notes
+                </li>
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <img src="/src/img/friends.svg" class="w-[15px] h-[15px]" alt="icon-friends"/>
+                    Friends
+                </li>
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <img src="/src/img/photos.svg" class="w-[15px] h-[15px]" alt="icon-photos"/>
+                    Photos
+                </li>
+                <li class="nav-item flex items-center gap-2 text-sm">
+                    <img src="/src/img/settings.svg" class="w-[15px] h-[15px]" alt="icon-settings"/>
+                    <span>Settings</span>
+                </li>
+                <li>
+                    <img src="/src/img/arrowDown.svg" alt="arrow-down"/>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main id="app" class="max-w-screen-desktop m-auto bg-bg flex flex-row gap-8">
+    <section class="gap-8 ml-8  flex max-w-screen-main-container flex-col justify-items-start">
+        <div class="max-w-screen-main-container bg-white mt-8 ">
+            <div class="flex max-w-screen-main-container-info flex-col mt-14 ml-8 mr-8 mb-8 gap-4">
+                <img src="/mainIcon.png" class="w-[1016px] h-[424px]" alt="main-image"/>
+                <div class="flex flex-row gap-2">
+                    <img src="/src/img/comment.svg" alt="comment"/>
+                    <p class="mt-1 mb-1">Jason Anderson commented:</p>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <p class="text-sm">Don’t sit and wait. Get out there, feel life. Touch the sun, and immerse in the
+                        sea. Keep love in your heart. A life without it is like a sunless garden when the flowers <br>
+                        are dead. Because summer is passion, memories, light breeze, the sun that appears on the skin
+                        and caresses the face. </p>
+                    <p class="text-sm">
+                        – <span class="text-second-tx">Jason,</span> <span class="italic text-second-tx">10:30 am</span>
+                    </p>
+                    <div class="flex flex-row gap-8 text-base">
+                        <div class="flex flex-row gap-2 items-center">
+                            <img src="/src/img/eye.svg" alt="eye"/>
+                            <p>432</p>
+                        </div>
+                        <div class="flex flex-row gap-2 items-center">
+                            <img src="/src/img/comment.svg" alt="eye"/>
+                            <p>432</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-main-container bg-white flex flex-row justify-between items-center">
+            <div class="mt-[18px] ml-8 mb-[19px]">Sunset Sunset Sunset</div>
+            <div class="flex flex-row gap-4 items-center mt-4 mb-4 mr-8">
+                <div class="flex flex-row gap-2 items-center">
+                    <img src="/src/img/times.svg" alt="icon-time"/>
+                    <p class="mt-[2.5px] mb-[2.5px]">53 minutes ago</p>
+                </div>
+                <img src="/src/img/backArrow.svg" alt="back-arrow"/>
+            </div>
+        </div>
+        <div class="max-w-screen-main-container bg-white flex flex-row justify-between items-center mb-[43px]">
+            <div class="mt-[18px] ml-8 mb-[19px]">Sunset Sunset Sunset</div>
+            <div class="flex flex-row gap-4 items-center mt-4 mb-4 mr-8">
+                <div class="flex flex-row gap-2 items-center">
+                    <img src="/src/img/times.svg" alt="icon-time"/>
+                    <p class="mt-[2.5px] mb-[2.5px]">53 minutes ago</p>
+                </div>
+                <img src="/src/img/backArrow.svg" alt="back-arrow"/>
+            </div>
+        </div>
+    </section>
+    <div class=" mt-8">
+        <div class="bg-white flex flex-col gap-8">
+            <div class="bg-white w-[264px]">
+                <div class="ml-[51px] mr-[51px] mt-8 flex flex-col items-center gap-[10px]">
+                    <img src="/avatar.png" alt="userAvatar" class="rounded-full w-[132px] h-[132px]"/>
+                    <div class="flex flex-col gap-2 items-center">
+                        <div class="text-lg">Hanna Dorman</div>
+                        <div class="text-sm">UX/UI designer</div>
+                    </div>
+                    <div class="flex flex-row gap-2 mb-[35px]">
+                        <img src="/src/img/telegram.svg" alt="telegram"/>
+                        <img src="/src/img/hh.svg" alt="hh"/>
+                        <img src="/src/img/twitter.svg" alt="twitter"/>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white flex flex-col items-center">
+                <div class="gap-2 flex flex-row w-full">
+                    <div class="text-sm ml-4">Navigation</div>
+                    <img src="/src/img/arrowUp.svg" alt="arrowUp"/>
+                </div>
+            </div>
+            <div class="bg-white flex flex-col items-center">
+                <div class="gap-2 flex flex-row w-full">
+                    <div class="text-sm ml-4">My Profile</div>
+                    <img src="/src/img/person.svg" alt="person-icon"/>
+                </div>
+                <div class="gap-2 flex flex-row w-full">
+                    <div class="text-sm ml-4">Balance</div>
+                    <img src="/src/img/balance.svg" alt="balance-icon"/>
+                </div>
+                <div class="gap-2 flex flex-row w-full">
+                    <div class="text-sm ml-4">Connections</div>
+                    <img src="/src/img/connections.svg" alt="connections-icon"/>
+                </div>
+                <div class="gap-2 flex flex-row w-full">
+                    <div class="text-sm ml-4">Friend</div>
+                    <img src="/src/img/persons.svg" alt="persons-icon"/>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 ">
+                <div class="flex flex-row">
+                    <div>Events</div>
+                    <img src="/src/img/events.svg" alt="icon-events"/>
+                </div>
+                <div class="flex flex-row mb-4">
+                    <div>Account Settings</div>
+                    <img src="/src/img/events.svg" alt="icon-events"/>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="flex flex-col gap-">
+                <div class="flex flex-row gap-2">
+                    <div>Share your thoughts</div>
+                    <img src="/src/img/arrowUp.svg" alt="arrowUp"/>
+                </div>
+                <div>
+                    enter your message
+                </div>
+                <button class="bg-blue">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
