@@ -13,7 +13,7 @@ const routes = {
 
 function loadContent(url) {
     return fetch(url)
-        .then(response => response.text()) // Преобразуем ответ в текст
+        .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(data, 'text/html');
@@ -35,8 +35,6 @@ function handleNavigation(path) {
     const url = routes[path];
     if (url) {
         loadContent(url);
-    } else {
-        loadContent(routes['/Webbee/']);
     }
     updateActiveTab(path);
 }
@@ -61,7 +59,6 @@ document.querySelectorAll('.icon-nav').forEach(icon => {
     });
 });
 
-// Обработчик события для загрузки DOM контента
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', event => {
@@ -70,20 +67,18 @@ document.addEventListener('DOMContentLoaded', function () {
             if (path === window.location.pathname) {
                 return;
             }
-            window.history.pushState({}, '', path); // Обновление URl без перезагрузки
+            window.history.pushState({}, '', path);
             handleNavigation(path);
         });
     });
 
     window.addEventListener('popstate', () => handleNavigation(window.location.pathname));
-    handleNavigation(window.location.pathname);
-
 });
 
 function startTimer(reset = false) {
     if (reset) {
         startTime = new Date().getTime();
-        localStorage.getItem('startTime');
+        localStorage.setItem('startTime', startTime);
     } else {
         startTime = localStorage.getItem('startTime') || new Date().getTime();
         localStorage.setItem('startTime', startTime);
